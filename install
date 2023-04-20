@@ -11,7 +11,7 @@ if ($OSTYPE == 'darwin') then
  	 echo $OSTYPE
  	 pushd fftw
    	 rm -f *.o *.lo
-      	 make -f Makefile.darwin
+      	 make --always-make -f Makefile.darwin
    	#
 else
 	configure
