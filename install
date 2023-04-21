@@ -1,23 +1,25 @@
 #
 #
-if (! -e fftw-2.1.5) then
+if [! -e fftw-2.1.5]
+then
    tar -xvf fftw-2.1.5-grimpmodified.tar.gz
-endif
+fi
 #
 pushd fftw-2.1.5
 #
-if ($OSTYPE == 'darwin') then
-   	 # Darwin so build from premade Makefile
- 	 echo $OSTYPE
- 	 pushd fftw
-   	 rm -f *.o *.lo
-      	 make --always-make -f Makefile.darwin
-   	#
+if [$OSTYPE == 'darwin']
+then
+         # Darwin so build from premade Makefile
+         echo $OSTYPE
+         pushd fftw
+         rm -f *.o *.lo
+         make --always-make -f Makefile.darwin
+        #
 else
-	configure
-	pushd fftw
-	make
-endif
+        configure
+        pushd fftw
+        make
+fi
 #
 mkdir -p $MACHTYPE-$OSTYPE
 mv -f *.o *.lo $MACHTYPE-$OSTYPE
