@@ -18,5 +18,7 @@ else
         configure
         pushd fftw
         make
+        mkdir -p $MACHTYPE-$OSTYPE
+        mv *.o *.lo $MACHTYPE-$OSTYPE
 fi
 #
