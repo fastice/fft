@@ -4,7 +4,7 @@ CFLAGS  =  -c -I.  -O3
 
 FFLAGS  =        -g
 
-#$(shell mkdir -p $(MACHTYPE)-$(OSTYPE))
+$(shell mkdir -p $(MACHTYPE)-$(OSTYPE))
 
 OBJS=   config.o fn_12.o fn_32.o fn_9.o  fni_15.o fni_6.o ftw_2.o ftw_7.o ftwi_32.o  ftwi_9.o twiddle.o \
 	executor.o fn_13.o fn_4.o  fni_1.o fni_16.o fni_64.o ftw_3.o ftw_8.o ftwi_4.o generic.o  wisdom.o \
