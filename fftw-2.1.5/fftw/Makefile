@@ -14,6 +14,11 @@ OBJS=   config.o fn_12.o fn_32.o fn_9.o  fni_15.o fni_6.o ftw_2.o ftw_7.o ftwi_3
 	fn_10.o fn_2.o  fn_7.o  fni_13.o fni_4.o ftw_10.o ftw_6.o ftwi_2.o ftwi_7.o rader.o \
 	fn_11.o fn_3.o  fn_8.o  fni_14.o fni_5.o ftw_16.o ftw_64.o ftwi_3.o ftwi_8.o timer.o
 
+MACHTYPE = $(shell uname -m)
+OSTYPE = $(shelf uname -s)
+
+$(shell mkdir -p $(MACHTYPE)-$(OSTYPE))
+
 .KEEP_STATE:
 all:	$(OBJS)
 	mv *.o $(MACHTYPE)-$(OSTYPE)
