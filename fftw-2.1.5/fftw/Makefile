@@ -4,8 +4,6 @@ CFLAGS  =  -c -I.  -O3
 
 FFLAGS  =        -g
 
-$(shell mkdir -p $(MACHTYPE)-$(OSTYPE))
-
 OBJS=   config.o fn_12.o fn_32.o fn_9.o  fni_15.o fni_6.o ftw_2.o ftw_7.o ftwi_32.o  ftwi_9.o twiddle.o \
 	executor.o fn_13.o fn_4.o  fni_1.o fni_16.o fni_64.o ftw_3.o ftw_8.o ftwi_4.o generic.o  wisdom.o \
 	fftwf77.o  fn_14.o fn_5.o  fni_10.o fni_2.o fni_7.o ftw_32.o ftw_9.o ftwi_5.o malloc.o wisdomio.o \
@@ -15,7 +13,7 @@ OBJS=   config.o fn_12.o fn_32.o fn_9.o  fni_15.o fni_6.o ftw_2.o ftw_7.o ftwi_3
 	fn_11.o fn_3.o  fn_8.o  fni_14.o fni_5.o ftw_16.o ftw_64.o ftwi_3.o ftwi_8.o timer.o
 
 MACHTYPE = $(shell uname -m)
-OSTYPE = $(shelf uname -s)
+OSTYPE = $(shell uname -s)
 
 $(shell mkdir -p $(MACHTYPE)-$(OSTYPE))
 
