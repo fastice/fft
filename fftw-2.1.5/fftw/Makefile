@@ -1,23 +1,28 @@
-CC =            gcc
-INCLUDEPATH =   .
-CFLAGS  =  -c -I.  -O3
+CC =		gcc
+MACHTYPE =	$(shell uname -m)
+OSTYPE =	$(shell uname -s)
+OBJDIR =	$(MACHTYPE)-$(OSTYPE)
 
-FFLAGS  =        -g
+$(shell mkdir -p $(OBJDIR))
 
-OBJS=   config.o fn_12.o fn_32.o fn_9.o  fni_15.o fni_6.o ftw_2.o ftw_7.o ftwi_32.o  ftwi_9.o twiddle.o \
-	executor.o fn_13.o fn_4.o  fni_1.o fni_16.o fni_64.o ftw_3.o ftw_8.o ftwi_4.o generic.o  wisdom.o \
-	fftwf77.o  fn_14.o fn_5.o  fni_10.o fni_2.o fni_7.o ftw_32.o ftw_9.o ftwi_5.o malloc.o wisdomio.o \
-	fftwnd.o fn_15.o fn_6.o  fni_11.o fni_3.o fni_8.o ftw_4.o ftwi_10.o  ftwi_6.o planner.o \
-	fn_1.o  fn_16.o fn_64.o fni_12.o fni_32.o fni_9.o ftw_5.o ftwi_16.o  ftwi_64.o  putils.o \
-	fn_10.o fn_2.o  fn_7.o  fni_13.o fni_4.o ftw_10.o ftw_6.o ftwi_2.o ftwi_7.o rader.o \
-	fn_11.o fn_3.o  fn_8.o  fni_14.o fni_5.o ftw_16.o ftw_64.o ftwi_3.o ftwi_8.o timer.o
+CFLAGS =	-c -I. -O3 -MMD -MP
 
-MACHTYPE = $(shell uname -m)
-OSTYPE = $(shell uname -s)
+SRCS =	config.c fn_12.c fn_32.c fn_9.c  fni_15.c fni_6.c ftw_2.c ftw_7.c ftwi_32.c  ftwi_9.c twiddle.c \
+	executor.c fn_13.c fn_4.c  fni_1.c fni_16.c fni_64.c ftw_3.c ftw_8.c ftwi_4.c generic.c  wisdom.c \
+	fftwf77.c  fn_14.c fn_5.c  fni_10.c fni_2.c fni_7.c ftw_32.c ftw_9.c ftwi_5.c malloc.c wisdomio.c \
+	fftwnd.c fn_15.c fn_6.c  fni_11.c fni_3.c fni_8.c ftw_4.c ftwi_10.c  ftwi_6.c planner.c \
+	fn_1.c  fn_16.c fn_64.c fni_12.c fni_32.c fni_9.c ftw_5.c ftwi_16.c  ftwi_64.c  putils.c \
+	fn_10.c fn_2.c  fn_7.c  fni_13.c fni_4.c ftw_10.c ftw_6.c ftwi_2.c ftwi_7.c rader.c \
+	fn_11.c fn_3.c  fn_8.c  fni_14.c fni_5.c ftw_16.c ftw_64.c ftwi_3.c ftwi_8.c timer.c
 
-$(shell mkdir -p $(MACHTYPE)-$(OSTYPE))
+OBJS =	$(SRCS:%.c=$(OBJDIR)/%.o)
+
+all:	$(OBJS)
+
+-include $(OBJS:.o=.d)
 
 .KEEP_STATE:
-all:	$(OBJS)
-	mv *.o $(MACHTYPE)-$(OSTYPE)
 
+
+$(OBJDIR)/%.o: %.c
+	$(CC) $(CFLAGS) $< -o $@
